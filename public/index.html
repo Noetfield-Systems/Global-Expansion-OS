@@ -157,7 +157,7 @@
   <button type="button" class="price-tile js-intake" data-service="readiness"><span class="price-glyph">◇</span><span class="price-info"><strong data-i18n="price1">Readiness Review</strong><small><b>$199</b> <span>USD</span></small><span data-i18n="price1Desc">An expansion assessment and prioritized plan.</span></span><span class="price-tile-arrow">↗</span></button>
   <button type="button" class="price-tile js-intake" data-service="launch"><span class="price-glyph">ϟ</span><span class="price-info"><strong data-i18n="price2">Launch Sprint</strong><small><i data-i18n="priceFrom">From</i> <b>$1,990</b> <span>USD</span></small><span data-i18n="price2Desc">Active launch coordination and delivery.</span></span><span class="price-tile-arrow">↗</span></button>
   <button type="button" class="price-tile js-intake" data-service="operations"><span class="price-glyph">▥</span><span class="price-info"><strong data-i18n="price3">Operating Team</strong><small><i data-i18n="priceFrom">From</i> <b>$499</b> <span data-i18n="priceMonthly">USD / mo</span></small><span data-i18n="price3Desc">A dedicated monthly execution rhythm.</span></span><span class="price-tile-arrow">↗</span></button>
-  <button type="button" class="pricing-compare js-intake"><span data-i18n="comparePlans">Compare plans</span><span>↗</span></button>
+  <button type="button" class="pricing-compare" id="comparePlansBtn"><span data-i18n="comparePlans">Compare plans</span><span>↗</span></button>
  </div>
  </div><p class="container pricing-legal" data-i18n="pricingNote">Published fees are indicative and subject to scope confirmation. This website currently accepts consultation requests, not payments.</p>
  </section>
@@ -194,5 +194,18 @@
 <p class="form-error" id="formError" role="alert"></p><div class="form-bottom"><button type="button" class="button button-outline form-back" id="formBack" hidden data-i18n="formBack">Back</button><button type="button" class="button button-gold form-next" id="formNext"><span data-i18n="formNext">Continue</span><span>↗</span></button><button type="submit" class="button button-gold form-submit" id="formSubmit" hidden><span data-i18n="formSubmit">Send my request</span><span>↗</span></button></div></form><p class="form-assurance" data-i18n="formAssurance">Confidential intake · No payment required · Eligibility reviewed individually</p></div>
 <div class="form-success" id="formSuccess" hidden><div class="success-icon">✓</div><h2 data-i18n="successTitle">Your request is in.</h2><p data-i18n="successDesc">We've recorded your expansion brief for review. Keep your reference for any follow-up.</p><code id="caseRef"></code><button class="button button-gold" id="successClose" data-i18n="successClose">Done</button></div></div></dialog>
 <dialog class="legal-dialog" id="legalDialog"><div class="legal-inner"><button class="dialog-close" id="legalClose" aria-label="Close">×</button><article id="legalContent"></article></div></dialog>
+<dialog id="compareDialog" class="compare-dialog" aria-labelledby="compareTitle">
+ <div class="compare-inner"><div class="compare-top"><div><div class="kicker">ENGAGEMENT OPTIONS</div><h2 id="compareTitle" data-i18n="compareTitle">Compare your expansion options</h2></div><button type="button" class="dialog-close" id="compareClose" aria-label="Close comparison">×</button></div>
+ <p class="compare-intro" data-i18n="compareIntro">Choose the most useful next step. Every paid engagement receives a written scope before commitment.</p>
+ <div class="compare-table-wrap"><table class="compare-table"><thead><tr><th data-i18n="compareFeature">What's included</th><th data-i18n="price1">Readiness Review</th><th data-i18n="price2">Launch Sprint</th><th data-i18n="price3">Operating Team</th></tr></thead>
+ <tbody><tr><th data-i18n="comparePrice">Starting price</th><td>$199</td><td>$1,990</td><td>$499/mo</td></tr>
+ <tr><th data-i18n="compareMarket">Market and structure review</th><td>✓</td><td>✓</td><td>Scoped</td></tr>
+ <tr><th data-i18n="compareRoadmap">Prioritized execution plan</th><td>✓</td><td>✓</td><td>Monthly</td></tr>
+ <tr><th data-i18n="compareProvider">Specialist coordination</th><td>—</td><td>✓</td><td>As scoped</td></tr>
+ <tr><th data-i18n="compareOps">Ongoing operations</th><td>—</td><td>—</td><td>✓</td></tr>
+ <tr><th data-i18n="compareOutput">Delivery evidence</th><td>Report</td><td>Milestones</td><td>Monthly review</td></tr></tbody></table></div>
+ <p class="compare-fineprint" data-i18n="pricingNote">Published fees are indicative and subject to scope confirmation. This website currently accepts consultation requests, not payments.</p>
+ <button type="button" id="compareRequest" class="button button-gold"><span data-i18n="priceCta">Request a plan</span> ↗</button>
+ </div></dialog>
 </body>
 </html>
