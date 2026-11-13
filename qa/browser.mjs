@@ -29,6 +29,7 @@ try{
  assert.equal(await desktop.locator(".country").count(),12,"All regional market markers are present");
  assert.match(await desktop.locator("#hero-title").innerText(),/Built locally/i);
  assert.equal(await desktop.locator(".world-visual").count(),1,"Original world artwork must be present");
+ assert.equal((await fetch(base+"/earth-night.webp")).status,200,"Locally vendored NASA hero asset must serve successfully");
  const visual=await desktop.locator(".world-visual").evaluate(el=>el.complete&&el.naturalWidth>0);
  assert.equal(visual,true,"Globe SVG must load");
  assert.equal(await desktop.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2),true,"No desktop horizontal overflow");
@@ -76,6 +77,15 @@ try{
  assert.equal(await mobile.locator("#menuToggle").getAttribute("aria-expanded"),"true");
  await mobile.locator("#menuToggle").click();
  await mobile.screenshot({path:"artifacts/mobile-390.png",fullPage:true});
+ await mobile.locator("#lang").selectOption("ar");
+ assert.equal(await mobile.evaluate(()=>document.documentElement.dir),"rtl","Arabic interface must use RTL");
+ assert.equal(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,"Arabic mobile must not overflow horizontally");
+ await mobile.screenshot({path:"artifacts/mobile-390-ar.png",fullPage:true});
+ await mobile.locator("#lang").selectOption("fa");
+ assert.equal(await mobile.evaluate(()=>document.documentElement.dir),"rtl","Persian interface must use RTL");
+ await mobile.locator("#lang").selectOption("tr");
+ assert.equal(await mobile.evaluate(()=>document.documentElement.dir),"ltr","Turkish interface must use LTR");
+ await mobile.locator("#lang").selectOption("en");
  assert.deepEqual(errors,[],"No uncaught JS errors on desktop or mobile");
  console.log("PASS: 1440px desktop, 390px mobile, RTL, pricing dialog, OS tabs, full intake fail-closed and mocked 201, console errors");
 }finally{
