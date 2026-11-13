@@ -294,3 +294,32 @@ body{background:#080f19; font-feature-settings:"ss01" on,"cv11" on}
 .step-icon svg{height:23px;width:23px;display:block}
 .price-glyph svg{height:25px;width:25px;display:block}
 @media(max-width:700px){.card-icon svg{height:27px;width:27px}.step-icon svg{height:20px;width:20px}}
+
+/* Cinematic Earth-at-night treatment: photographic city lights beneath fine route arcs.
+   Photographic layer from Unsplash; route network remains an original SVG illustration. */
+.hero-scene::before{
+ content:"";position:absolute;z-index:-1;
+ width:600px;height:600px;left:calc(58% - 300px);top:-33px;
+ border-radius:50%;
+ background-image:radial-gradient(circle at 49% 48%,transparent 18%,#07122038 62%,#081422e6 92%),url("https://images.unsplash.com/photo-1663160055679-7b7fecb4468f?auto=format&fit=crop&w=1300&q=83");
+ background-size:cover,cover;background-position:center,center;
+ opacity:.77;mix-blend-mode:screen;
+ -webkit-mask-image:radial-gradient(circle,#000 48%,#000e 65%,transparent 76%);
+ mask-image:radial-gradient(circle,#000 48%,#000e 65%,transparent 76%);
+ filter:contrast(1.2) saturate(.88);
+ pointer-events:none;
+}
+.globe-svg > circle:nth-of-type(2){fill:transparent!important;stroke:#97c2e45e;stroke-width:1.1}
+.globe-svg > g[clip-path]{opacity:.27}
+.card-building:before,.card-city:before,.card-office:before,
+.route-market:before,.route-multi:before,.route-ops:before{filter:brightness(1.17) saturate(.95)}
+.visual-card:after{background:linear-gradient(90deg,#08131edc 0%,#081321b0 39%,#0c17234a 100%),linear-gradient(0deg,#09111fba,transparent 83%)}
+@media(max-width:1000px){
+ .hero-scene::before{width:540px;height:540px;left:calc(53% - 270px);top:-28px}
+}
+@media(max-width:700px){
+ .hero-scene::before{width:380px;height:380px;left:calc(50% - 190px);top:-23px;opacity:.68}
+}
+@media(max-width:390px){
+ .hero-scene::before{width:345px;height:345px;left:calc(50% - 172.5px)}
+}
