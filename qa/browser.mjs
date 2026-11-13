@@ -29,7 +29,7 @@ try{
  assert.equal(await desktop.locator(".country").count(),12,"All regional market markers are present");
  assert.match(await desktop.locator("#hero-title").innerText(),/Built locally/i);
  assert.equal(await desktop.locator(".world-visual").count(),1,"Original world artwork must be present");
- assert.equal((await fetch(base+"/earth-night.webp")).status,200,"Locally vendored NASA hero asset must serve successfully");
+ assert.equal((await fetch(origin+"/earth-night.webp")).status,200,"Locally vendored NASA hero asset must serve successfully");
  const visual=await desktop.locator(".world-visual").evaluate(el=>el.complete&&el.naturalWidth>0);
  assert.equal(visual,true,"Globe SVG must load");
  assert.equal(await desktop.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2),true,"No desktop horizontal overflow");
