@@ -1,5 +1,5 @@
 # AGENTS.md — GLOBAL EXPANSION OS
-Read `docs/DESIGN_SYSTEM_V4.md`, `README.md` and `public/IMAGE_CREDITS.md` before any product or marketing change.
+Read `docs/DESIGN_SYSTEM_V5.md`, `README.md` and `public/IMAGE_CREDITS.md` before any product or marketing change.
 
 Founder intent: build, ship, sell and collect legitimate revenue quickly. Preserve the independent human + AI global expansion operating-company thesis. Do not drift into generic investor networking, registration-only business, B2B SaaS audits, or AI dashboards without real execution.
 
