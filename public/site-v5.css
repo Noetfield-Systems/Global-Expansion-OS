@@ -786,3 +786,17 @@ body{background:#071421;letter-spacing:-.01em}
  .mobile-menu{position:relative;z-index:102;flex:0 0 38px;touch-action:manipulation}
  .nav-links{z-index:99;top:100%;background:rgba(9,24,40,.99)}
 }
+
+/* Typography fidelity correction: the first two editorial lines are luminous white,
+   with gold reserved for the word "globally." only. */
+.hero h1 .headline-line:not(.headline-gold){
+ background:none!important;background-image:none!important;
+ color:#faf8f6!important;-webkit-text-fill-color:#faf8f6!important;
+ -webkit-background-clip:border-box!important;background-clip:border-box!important;
+ filter:none!important;
+}
+.hero h1 .headline-line.headline-gold{
+ background-image:linear-gradient(101deg,#ffe5bd 0%,#f1ae69 68%,#e5a064 98%)!important;
+ -webkit-text-fill-color:transparent!important;color:transparent!important;
+ background-clip:text!important;-webkit-background-clip:text!important;
+}
