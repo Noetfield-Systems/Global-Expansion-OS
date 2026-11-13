@@ -30,6 +30,16 @@ try{
  assert.match(await desktop.locator("#hero-title").innerText(),/Built locally/i);
  assert.equal(await desktop.locator(".world-visual").count(),1,"Original world artwork must be present");
  assert.equal((await fetch(origin+"/earth-night.webp")).status,200,"Locally vendored NASA hero asset must serve successfully");
+ for(const asset of ["hero-city.webp","readiness.webp","launch-dubai.webp","operations.webp"]){
+   const response=await fetch(origin+"/media/"+asset);
+   assert.equal(response.status,200,"Vendored photographic asset must exist: "+asset);
+   assert.match(response.headers.get("content-type")||"",/image\/webp/,"Photographic assets must be webp");
+ }
+ assert.equal(await desktop.locator('link[href="/site-v5.css"]').count(),1,"V5 consolidated stylesheet must load");
+ const font=await desktop.locator("#hero-title").evaluate(el=>getComputedStyle(el).fontFamily);
+ assert.match(font,/Bodoni Moda/,"Hero needs premium editorial typeface");
+ const titleColor=await desktop.locator(".headline-line:first-child").evaluate(el=>getComputedStyle(el).webkitTextFillColor);
+ assert.match(titleColor,/rgb\(250, 248, 246\)/,"First headline line must be luminous white");
  const visual=await desktop.locator(".world-visual").evaluate(el=>el.complete&&el.naturalWidth>0);
  assert.equal(visual,true,"Globe SVG must load");
  assert.equal(await desktop.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2),true,"No desktop horizontal overflow");
@@ -86,6 +96,15 @@ try{
  await mobile.locator("#lang").selectOption("tr");
  assert.equal(await mobile.evaluate(()=>document.documentElement.dir),"ltr","Turkish interface must use LTR");
  await mobile.locator("#lang").selectOption("en");
+ const narrow=await browser.newPage({viewport:{width:320,height:760},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+ await narrow.goto(origin,{waitUntil:"domcontentloaded"});
+ assert.equal(await narrow.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,"320px narrow mobile has no horizontal overflow");
+ assert.equal(await narrow.locator(".visual-card").count(),3);
+ await narrow.close();
+ const tablet=await browser.newPage({viewport:{width:768,height:1024},deviceScaleFactor:1});
+ await tablet.goto(origin,{waitUntil:"domcontentloaded"});
+ assert.equal(await tablet.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,"768px tablet has no horizontal overflow");
+ await tablet.close();
  assert.deepEqual(errors,[],"No uncaught JS errors on desktop or mobile");
  console.log("PASS: 1440px desktop, 390px mobile, RTL, pricing dialog, OS tabs, full intake fail-closed and mocked 201, console errors");
 }finally{
