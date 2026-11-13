@@ -777,3 +777,12 @@ body{background:#071421;letter-spacing:-.01em}
 [dir="rtl"] .hero h1{font-family:"Vazirmatn",Arial,sans-serif;font-weight:750;letter-spacing:-.04em;font-size:clamp(39px,4.2vw,61px);white-space:normal}
 [dir="rtl"] .band-intro h2,[dir="rtl"] .section h2,[dir="rtl"] .closing-cta h2{font-family:"Vazirmatn",sans-serif;letter-spacing:-.045em;font-weight:750}
 [dir="rtl"] .hero-scene::before,[dir="rtl"] .hero-scene::after{direction:ltr}
+
+/* Accessible mobile navigation: keep toggle above the opened menu panel.
+   Fixes pointer interception seen in real Chromium mobile smoke tests. */
+@media(max-width:1000px){
+ .nav-wrap{isolation:isolate}
+ .nav-actions{position:relative;z-index:101}
+ .mobile-menu{position:relative;z-index:102;flex:0 0 38px;touch-action:manipulation}
+ .nav-links{z-index:99;top:100%;background:rgba(9,24,40,.99)}
+}
