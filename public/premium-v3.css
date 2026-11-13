@@ -288,3 +288,9 @@ body{background:#080f19; font-feature-settings:"ss01" on,"cv11" on}
 .compare-dialog .button{margin-top:15px}
 .compare-dialog::backdrop{background:#020911dc;backdrop-filter:blur(12px)}
 @media(max-width:700px){.compare-inner{padding:22px 15px}.compare-table th,.compare-table td{padding:11px;font-size:10px}.compare-dialog .button{width:100%}}
+
+/* Precisely sized optical icon strokes. */
+.card-icon svg{width:25px;height:25px;display:block;filter:drop-shadow(0 0 8px #eabb8a50)}
+.step-icon svg{height:23px;width:23px;display:block}
+.price-glyph svg{height:25px;width:25px;display:block}
+@media(max-width:700px){.card-icon svg{height:27px;width:27px}.step-icon svg{height:20px;width:20px}}
