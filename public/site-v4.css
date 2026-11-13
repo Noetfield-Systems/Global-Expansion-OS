@@ -424,3 +424,16 @@ dialog{border:0;padding:0;background:transparent;color:#f5f7f9;max-height:calc(1
  .hero-console{transform:none}
  .hero-console:hover{transform:none}
 }
+
+/* V4.2 art direction — premium warm-lit architectural hero card.
+   Source: Unsplash / Declan Sun, "Modern building with illuminated windows reflected in water",
+   published 2025-09-07, free to use under Unsplash License. */
+.visual-architecture:before {
+ background-image:url("https://images.unsplash.com/photo-1757211965045-408771528297?auto=format&fit=crop&w=1200&q=86");
+ background-position:60% 47%;
+ filter:saturate(1.15) brightness(1.18) contrast(1.10);
+}
+.visual-architecture:after {
+ background:linear-gradient(90deg,rgba(9,18,31,.94) 0%,rgba(9,18,31,.69) 31%,rgba(13,22,34,.08) 91%),
+ linear-gradient(0deg,rgba(9,16,27,.52) 0%,transparent 72%);
+}
