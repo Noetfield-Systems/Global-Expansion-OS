@@ -42,5 +42,7 @@ jobs:
           git add public/earth-night.webp
           if ! git diff --cached --quiet; then
             git commit -m "assets: vendor optimized public-domain NASA Earth at Night imagery"
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
