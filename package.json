@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "node --test",
-    "check": "node --check server.js && node --check public/app.js && node --check public/premium-v3.js && node --check public/admin.js"
+    "check": "node --check server.js && node --check public/app.js && node --check public/premium-v3.js && node --check public/admin.js && node --check qa/integration.mjs"
   },
   "engines": {
     "node": ">=20"
