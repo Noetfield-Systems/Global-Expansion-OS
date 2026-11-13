@@ -1,0 +1,46 @@
+name: Vendor NASA Earth-Night Artwork
+on:
+  push:
+    paths:
+      - .github/workflows/vendor-earth.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  vendor-photography:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow==11.3.0
+      - name: Download, verify and optimize public-domain NASA composite
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          import urllib.request, io
+          from pathlib import Path
+          source='https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001591/GSFC_20171208_Archive_e001591~large.jpg'
+          request=urllib.request.Request(source,headers={'User-Agent':'GlobalExpansionOS/1.0 (+https://github.com/Noetfield-Systems/Global-Expansion-OS)'})
+          with urllib.request.urlopen(request, timeout=30) as response:
+              data=response.read()
+          img=Image.open(io.BytesIO(data)).convert('RGB')
+          assert img.width>=960 and img.height>=960, f'Unexpected NASA image size {img.size}'
+          img.thumbnail((960,960),Image.Resampling.LANCZOS)
+          path=Path('public/earth-night.webp')
+          img.save(path, 'WEBP', quality=82, method=6)
+          print(f'NASA Earth-night image: {path.stat().st_size} bytes, {img.size}')
+          PY
+      - name: Commit verified local asset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/earth-night.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "assets: vendor optimized public-domain NASA Earth at Night imagery"
+            git push origin HEAD:main
+          fi
