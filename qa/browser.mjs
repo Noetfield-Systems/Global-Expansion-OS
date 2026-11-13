@@ -22,9 +22,15 @@ try{
  desktop.on("pageerror",e=>errors.push("desktop: "+e.message));
  await desktop.goto(origin,{waitUntil:"domcontentloaded"});
  await desktop.waitForSelector(".hero-console");
- assert.equal(await desktop.locator(".hero-capability").count(),6,"Six hero capabilities are present");
- assert.equal(await desktop.locator(".visual-card").count(),6,"Three service and three market cards are present");
+ assert.equal(await desktop.locator(".capability").count(),6,"Six hero capabilities are present");
+ assert.equal(await desktop.locator(".visual-card").count(),3,"Three premium service cards are present");
+ assert.equal(await desktop.locator(".step").count(),5,"Five execution steps are present");
+ assert.equal(await desktop.locator(".tier").count(),3,"Three commercial packages are present");
+ assert.equal(await desktop.locator(".country").count(),12,"All regional market markers are present");
  assert.match(await desktop.locator("#hero-title").innerText(),/Built locally/i);
+ assert.equal(await desktop.locator(".world-visual").count(),1,"Original world artwork must be present");
+ const visual=await desktop.locator(".world-visual").evaluate(el=>el.complete&&el.naturalWidth>0);
+ assert.equal(visual,true,"Globe SVG must load");
  assert.equal(await desktop.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2),true,"No desktop horizontal overflow");
  assert.equal(await desktop.locator("#compareDialog").getAttribute("open"),null);
  await desktop.locator("#comparePlansBtn").click();
@@ -64,7 +70,8 @@ try{
  mobile.on("pageerror",e=>errors.push("mobile: "+e.message));
  await mobile.goto(origin,{waitUntil:"domcontentloaded"});
  assert.equal(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2),true,"No mobile horizontal overflow");
- assert.equal(await mobile.locator(".hero-capability").count(),6);
+ assert.equal(await mobile.locator(".capability").count(),6);
+ assert.equal(await mobile.locator(".visual-card").count(),3);
  await mobile.locator("#menuToggle").click();
  assert.equal(await mobile.locator("#menuToggle").getAttribute("aria-expanded"),"true");
  await mobile.locator("#menuToggle").click();
