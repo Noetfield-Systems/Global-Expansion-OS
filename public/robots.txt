@@ -3,3 +3,5 @@ Allow: /
 Disallow: /ops
 Disallow: /admin.html
 Disallow: /api/
+
+Sitemap: https://global-expansion-web-production.up.railway.app/sitemap.xml
