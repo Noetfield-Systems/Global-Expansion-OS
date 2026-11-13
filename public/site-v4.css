@@ -381,7 +381,7 @@ dialog{border:0;padding:0;background:transparent;color:#f5f7f9;max-height:calc(1
 .hero-scene::before{
  content:"";position:absolute;z-index:0;
  width:572px;height:572px;left:93px;top:-84px;border-radius:50%;pointer-events:none;
- background-image:radial-gradient(ellipse at 45% 28%,rgba(245,164,98,.19),transparent 69%),url("https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001591/GSFC_20171208_Archive_e001591~large.jpg");
+ background-image:radial-gradient(ellipse at 45% 28%,rgba(245,164,98,.19),transparent 69%),url("/earth-night.webp");
  background-size:cover,114% 114%;background-position:center,center;background-repeat:no-repeat;
  filter:saturate(1.30) brightness(1.15) contrast(1.13) drop-shadow(0 0 34px #cba17062);
  -webkit-mask-image:radial-gradient(circle,#000 65%,#000d 75%,transparent 83%);
@@ -393,3 +393,34 @@ dialog{border:0;padding:0;background:transparent;color:#f5f7f9;max-height:calc(1
 @media(min-width:1001px) and (max-width:1260px){.hero-scene::before{width:540px;height:540px;left:88px;top:-75px}}
 @media(min-width:701px) and (max-width:1000px){.hero-scene::before{width:540px;height:540px;left:90px;top:-100px}}
 @media(max-width:700px){.hero-scene::before{width:438px;height:438px;left:calc(50% - 219px);top:-55px}}
+
+/* Precision visual QA V4.1: protect market chips, retain photographic contrast,
+   and introduce metallic depth to the illustrative workspace. */
+.hero{overflow:hidden}
+.visual-card:before{filter:sepia(.22) saturate(1.35) brightness(1.18) contrast(1.1)}
+.visual-card:after{
+ background:linear-gradient(90deg,#0a1421e0 0%,#0e1a2c9e 45%,#0b132126 100%),
+ linear-gradient(0deg,#0a112080,transparent 81%);
+}
+.visual-dubai:before{filter:sepia(.35) saturate(1.65) brightness(1.26) contrast(1.12)}
+.visual-architecture:before{filter:sepia(.20) saturate(1.23) brightness(1.28) contrast(1.08)}
+.visual-meeting:before{background-image:url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1050&q=85");background-position:50% 52%;filter:sepia(.24) saturate(1.23) brightness(1.12)}
+.hero-console{
+ transform:perspective(1200px) rotateY(-11deg) rotateX(2deg) rotate(-2.5deg);
+ border-color:#f7c28eaf;
+ box-shadow:0 24px 55px #000e,0 0 0 5px #071220c9,0 0 39px #e8a36c7a,
+ inset 0 1px 0 #f8e0bd70,inset 0 -2px 0 #dca36b70;
+}
+.hero-console::after{
+ content:"";pointer-events:none;position:absolute;inset:0;border-radius:inherit;
+ background:linear-gradient(133deg,#ffffff18 0%,transparent 24%,transparent 72%,#dbaf6e08 100%);
+}
+.hero-console:hover{transform:perspective(1200px) rotateY(-6deg) rotateX(1deg) rotate(-1deg)}
+@media(max-width:1000px){
+ .hero-console{transform:perspective(1200px) rotateY(-5deg) rotate(-1deg)}
+ .hero-console:hover{transform:none}
+}
+@media(max-width:700px){
+ .hero-console{transform:none}
+ .hero-console:hover{transform:none}
+}
